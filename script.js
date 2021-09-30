@@ -61,7 +61,12 @@
                 if(obj.label === "person"){
                     return;
                 }else{
-                    fooditems.push(obj.label);
+                    if(!fooditems.find(obj.label)){
+                        fooditems.push(obj.label);
+                    }
+                    else{
+                        return;
+                    }
                 }
             }
             fooditems = fooditems.toString().replace(",", "-").replace(" ", "-");
@@ -69,9 +74,9 @@
             console.log(fooditems);
             document.getElementById("demo").innerHTML = fooditems;
 
-            /*const response = await fetch(`https://api.edamam.com/search?app_id=&app_key=&q=`);
+            const response = await fetch(`https://api.edamam.com/search?app_id=${data.app_id}&app_key=${data.key}&q=${fooditems}`);
             const recipes = await response.json();
-            console.log(recipes);*/
+            console.log(recipes);
         }
 
         $btn.addEventListener('click', fetchRecipes);
