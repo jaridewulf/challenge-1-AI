@@ -62,7 +62,7 @@
             fooditems = fooditems.toString().replaceAll(",", "-").replaceAll(" ", "-");
 
 
-            const response = await fetch(`https://api.edamam.com/search?app_id=01f78b57&app_key=4b42b02ad0e617c8cadc473cf21f0076&q=${fooditems}`);
+            const response = await fetch(`https://api.edamam.com/search?app_id=${window.api_credentials.app_id}&app_key=${window.api_credentials.app_key}&q=${fooditems}`);
             const recipes = await response.json();
             renderRecipes(recipes.hits);
         }
@@ -76,7 +76,7 @@
 
             function createItem(value) {
                 console.log("1 value is", value);
-                text += "<li><a href=" + value.recipe.shareAs + " target=_blank><img src=" + value.recipe.image + " </img>" + "<h3>" + value.recipe.label + "</h3></a></li>";
+                text += "<li><a href=" + value.recipe.shareAs + " target=_blank><img src=" + value.recipe.image + " </img>" + "<h3>" + value.recipe.label + "</h3></a><hr></li>";
             }
         }
 
